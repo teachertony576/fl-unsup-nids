@@ -1,9 +1,9 @@
 import pandas as pd
 
-botiot = pd.read_csv("../sampled_datasets/botiot_sampled.csv.gz")
-cicids = pd.read_csv("../sampled_datasets/cicids_sampled.csv.gz")
-nb15 = pd.read_csv("../sampled_datasets/nb15_sampled.csv.gz")
-toniot = pd.read_csv("../sampled_datasets/toniot_sampled.csv.gz")
+botiot = pd.read_csv("/data176/privatecloud/data/autodl-container-1b164bbe69-af1a6422-storage/ids_data/NF-BoT-IoT-v2.csv")
+cicids = pd.read_csv("/data176/privatecloud/data/autodl-container-1b164bbe69-af1a6422-storage/ids_data/NF-CSE-CIC-IDS2018-v2.csv")
+nb15 = pd.read_csv("/data176/privatecloud/data/autodl-container-1b164bbe69-af1a6422-storage/ids_data/NF-UNSW-NB15-v2.csv")
+toniot = pd.read_csv("/data176/privatecloud/data/autodl-container-1b164bbe69-af1a6422-storage/ids_data/NF-ToN-IoT-v2.csv")
 
 toniot_dist = [
     ["xss", 48652],
@@ -56,7 +56,7 @@ for attack in toniot_dist:
     q = num_samples_attack - attack[1]
     print(">> Sampling TON-IoT ({}) - Num of samples {} | Required Samples {} | To be removed {}".format(attack[0], num_samples_attack, attack[1], q))
     toniot = toniot.drop(toniot[toniot['Attack'] == attack[0]].sample(n=q).index)
-toniot.to_csv("../reduced_datasets/toniot_bench_dnn.csv.gz", index=False)
+toniot.to_csv("/data176/privatecloud/data/autodl-container-1b164bbe69-af1a6422-storage/reduced_ids_data/toniot_bench_dnn.csv", index=False)
 
 print("> Bot-IoT")
 for attack in botiot_dist:
@@ -64,7 +64,7 @@ for attack in botiot_dist:
     q = num_samples_attack - attack[1]
     print(">> Sampling Bot-IoT ({}) - Num of samples {} | Required Samples {} | To be removed {}".format(attack[0], num_samples_attack, attack[1], q))
     botiot = botiot.drop(botiot[botiot['Attack'] == attack[0]].sample(n=q).index)
-botiot.to_csv("../reduced_datasets/botiot_bench_dnn.csv.gz", index=False)
+botiot.to_csv("/data176/privatecloud/data/autodl-container-1b164bbe69-af1a6422-storage/reduced_ids_data/botiot_bench_dnn.csv", index=False)
 
 print("> UNSW-NB15")
 for attack in nb15_dist:
@@ -72,7 +72,7 @@ for attack in nb15_dist:
     q = num_samples_attack - attack[1]
     print(">> Sampling UNSW-NB15 ({}) - Num of samples {} | Required Samples {} | To be removed {}".format(attack[0], num_samples_attack, attack[1], q))
     nb15 = nb15.drop(nb15[nb15['Attack'] == attack[0]].sample(n=q).index)
-nb15.to_csv("../reduced_datasets/nb15_bench_dnn.csv.gz", index=False)
+nb15.to_csv("/data176/privatecloud/data/autodl-container-1b164bbe69-af1a6422-storage/reduced_ids_data/nb15_bench_dnn.csv", index=False)
 
 print("> CIC-IDS-2018")
 for attack in cicids_dist:
@@ -80,4 +80,4 @@ for attack in cicids_dist:
     q = num_samples_attack - attack[1]
     print(">> Sampling CIC-IDS-2018 ({}) - Num of samples {} | Required Samples {} | To be removed {}".format(attack[0], num_samples_attack, attack[1], q))
     cicids = cicids.drop(cicids[cicids['Attack'] == attack[0]].sample(n=q).index)
-cicids.to_csv("../reduced_datasets/cicids_bench_dnn.csv.gz", index=False)
+cicids.to_csv("/data176/privatecloud/data/autodl-container-1b164bbe69-af1a6422-storage/reduced_ids_data/cicids_bench_dnn.csv", index=False)
